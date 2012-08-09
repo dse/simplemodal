@@ -147,10 +147,13 @@
 	 * focus:			(Boolean:true) Focus in the first visible, enabled element?
 	 * opacity:			(Number:50) The opacity value for the overlay div, from 0 - 100
 	 * overlayId:		(String:'simplemodal-overlay') The DOM element id for the overlay div
+	 * overlayClass:	(String:null) Additional space-separated class name(s) for the overlay div
 	 * overlayCss:		(Object:{}) The CSS styling for the overlay div
 	 * containerId:		(String:'simplemodal-container') The DOM element id for the container div
+	 * containerClass:	(String:null) Additional space-separated class name(s) for the container div
 	 * containerCss:	(Object:{}) The CSS styling for the container div
 	 * dataId:			(String:'simplemodal-data') The DOM element id for the data div
+	 * dataClass:			(String:null) Additional space-separated class name(s) for the data div
 	 * dataCss:			(Object:{}) The CSS styling for the data div
 	 * minHeight:		(Number:null) The minimum height for the container
 	 * minWidth:		(Number:null) The minimum width for the container
@@ -184,10 +187,13 @@
 		focus: true,
 		opacity: 50,
 		overlayId: 'simplemodal-overlay',
+		overlayClass: null,
 		overlayCss: {},
 		containerId: 'simplemodal-container',
+		containerClass: null,
 		containerCss: {},
 		dataId: 'simplemodal-data',
+		dataClass: null,
 		dataCss: {},
 		minHeight: null,
 		minWidth: null,
@@ -329,6 +335,9 @@
 					zIndex: s.o.zIndex + 1
 				}))
 				.appendTo(s.o.appendTo);
+			if (s.o.overlayClass) {
+				s.d.overlay.addClass(s.o.overlayClass);
+			}
 
 			// create the container
 			s.d.container = $('<div></div>')
@@ -343,6 +352,9 @@
 					? $(s.o.closeHTML).addClass(s.o.closeClass)
 					: '')
 				.appendTo(s.o.appendTo);
+			if (s.o.containerClass) {
+				s.d.container.addClass(s.o.containerClass);
+			}
 
 			s.d.wrap = $('<div></div>')
 				.attr('tabIndex', -1)
@@ -359,6 +371,9 @@
 						display: 'none'
 				}))
 				.appendTo('body');
+			if (s.o.dataClass) {
+				s.d.data.addClass(s.o.dataClass);
+			}
 			data = null;
 
 			s.setContainerDimensions();
